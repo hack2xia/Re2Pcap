@@ -492,7 +492,7 @@ def parse_Request(req_file):
 			os.sys.exit(1)
 		else:
 			# Get POST parameter values. Httpretty parsing of post param adds `\n\r\n\r` so getting rid of last 4 bytes
-			postParam = str(req.rfile.read(), 'utf-8')[:-2].encode('utf-8')
+			postParam = str(req.rfile.read(), 'utf-8')[:-4].encode('utf-8')
 			# if not req.headers['host']:
 			# 	logger.error(' Please Add Host Request Header')
 			# 	os.sys.exit(1)
