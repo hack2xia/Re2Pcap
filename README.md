@@ -34,10 +34,7 @@ git clone https://github.com/Cisco-Talos/Re2Pcap.git
 cd Re2Pcap/
 ./re2pcap.sh
 ```
-OR
-```
-docker run -d --cap-add NET_ADMIN -p 5000:5000 --name re2pcap jkxss/re2pcap
-```
+
 
 Open `localhost:5000` in your web browser to access Re2Pcap or use [Re2Pcap-cmd](Re2Pcap-cmd) script to interact with Re2Pcap container to get PCAP in current working directory 
 
@@ -61,9 +58,9 @@ FROM alpine
 
 # Get required dependencies and setup for Re2Pcap
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-RUN apk update && apk add python3 tcpdump tcpreplay
-RUN pip3 install --upgrade pip
-RUN pip3 install pexpect flask requests httpretty requests-toolbelt
+RUN apk update && apk add python3 tcpdump tcpreplay py3-pip
+RUN pip3 install --upgrade pip --break-system-packages
+RUN pip3 install pexpect flask requests httpretty requests-toolbelt --break-system-packages
 
 COPY Re2Pcap/ /Re2Pcap
 RUN cd Re2Pcap && chmod +x Re2Pcap.py
